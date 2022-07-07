@@ -45,14 +45,15 @@ Kedua adalah tabel artwork yang berisi karya seni dari user, tabel user memiliki
 Dillinger is currently extended with the following plugins.
 Instructions on how to use them in your own application are linked below.
 
-| Plugin | README |
+| Plugin | version |
 | ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+| php | ^7.3/^8.0 |
+| fruitcake/laravel-cors | ^2.0 |
+| guzzlehttp/guzzle | ^7.0.1 |
+| laravel/framework | ^8.75 |
+| laravel/passport | ^10.4 |
+| laravel/sanctum | ^2.11 |
+| laravel/tinker | ^2.5 |
 
 ## Instalasi
 
