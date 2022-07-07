@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Art Galleries</title>
 
     <!-- Fontfaces CSS-->
     <link href="{{asset('admin/css/font-face.css')}}" rel="stylesheet" media="all">
@@ -60,7 +60,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="{{route('dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
 
                         </li>
@@ -69,10 +69,10 @@
                                 <i class="fas fa-caret-down"></i>Master</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">User</a>
+                                    <a href="{{route("user.index")}}">User</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Artwork</a>
+                                    <a href="{{route("artwork.index")}}">Artwork</a>
                                 </li>
 
                             </ul>
@@ -94,7 +94,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="{{route('dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li class="active has-sub">
@@ -102,7 +102,7 @@
                                 <i class="fas fa-caret-down"></i>Master</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">User</a>
+                                    <a href="{{route("user.index")}}">User</a>
                                 </li>
                                 <li>
                                     <a href="{{route('artwork.index')}}">Artwork</a>
@@ -127,7 +127,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="{{asset(auth()->user()->avatar)}}" alt="{{auth()->user()->name}}" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{auth()->user()->name}}</a>
@@ -136,7 +136,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="{{asset(auth()->user()->avatar)}}" alt="{{auth()->user()->name}}" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -148,14 +148,18 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                    <a href="{{route('user.edit',[auth()->user()->id])}}">
+                                                        <i class="zmdi zmdi-settings"></i>Edit Account</a>
                                                 </div>
                                             </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                                            </div>
+                                            <form action="{{route('logout')}}" method="post">
+                                                @csrf
+                                                <div class="account-dropdown__footer">
+                                                  <button class="btn btn-danger p-3" style="width:100%">
+                                                      <i class="zmdi zmdi-power"></i> Logout
+                                                  </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

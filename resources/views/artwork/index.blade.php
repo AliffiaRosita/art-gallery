@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="col-md-2">
-        <a href="{{route('artwork.create')}}" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Add Artwork</a>
+        <a href="{{route('artwork.create')}}" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Add User</a>
     </div>
 </div>
 <div class="row mt-5">
@@ -43,7 +43,6 @@
                             </form>
                         </td>
                     </tr>
-                     @include('artwork.show')
 
                     @endforeach
 
