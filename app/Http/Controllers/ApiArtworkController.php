@@ -17,28 +17,26 @@ class ApiArtworkController extends Controller
     public function getArtwork()
     {
         try{
-            $users = User::with('artworks')->get();
-            foreach ($users as  $user) {
-                foreach ($user->artworks as  $artwork) {
-                    $data[]= [
-                        'id'=> $user->id,
-                        'name' => $user->name,
-                        'email'=> $user->email,
-                        'artworks'=>[
-                            'id'=> $artwork->id,
-                            'title'=> $artwork->title,
-                            'desc'=> $artwork->description,
-                            'image'=> url($artwork->image),
-                        ]
-                    ];
-                }
+            $data=[];
+            $arts = Artwork::with('user')->get();
+            foreach ($arts as  $art) {
+                $data[]= [
+                        'id'=> $art->id,
+                        'title'=> $art->title,
+                        'desc'=> $art->description,
+                        'image'=> url($art->image),
+                        'artist'=> $art->user->name
+  
+                ];
             }
             return response()->json([
                 'data'=> $data,
                 'message'=> 'Success',
             ],200);
         }catch(Exception $e){
-            return $e; 
+            return response()->json([
+                'message'=> 'Artwork data not found',
+            ],404);
         }
     }
 

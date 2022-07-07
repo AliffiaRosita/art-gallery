@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="col-md-2">
-        <a href="{{route('artwork.create')}}" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Add User</a>
+        <a href="{{route('artwork.create')}}" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Add Artwork</a>
     </div>
 </div>
 <div class="row mt-5">
