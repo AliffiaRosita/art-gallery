@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12" >
         <div class="overview-wrap">
-            <h2 class="title-1">Create Artwork</h2>
+            <h2 class="title-1">Add Artwork</h2>
             
         </div>
     </div>
@@ -12,14 +12,19 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body p-5">
-                <form action="" method="post">
+                <form action="{{route('artwork.store')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="text-input" class=" form-control-label ">Title <span class="text-danger">*</span></label>
                         </div>
                         <div class="col-12 col-md-7">
-                            <input type="text" id="text-input" name="text-input"  class="form-control">
+                            <input name="title" value="{{ old('title') }}" type="text" id="text-input"   class="form-control @error('title') is-invalid  @enderror">
+                            @error('title')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row form-group">
@@ -27,7 +32,12 @@
                             <label for="text-input" class=" form-control-label ">Description <span class="text-danger">*</span></label>
                         </div>
                         <div class="col-12 col-md-7">
-                            <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Describe the artwork.." class="form-control"></textarea>
+                            <textarea name="description" id="textarea-input" rows="9" placeholder="Describe the artwork.." class="form-control @error('description') is-invalid  @enderror">{{ old('description') }}</textarea>
+                            @error('description')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row form-group mb-5">
@@ -35,7 +45,12 @@
                             <label for="text-input" class=" form-control-label ">Image of the artwork <span class="text-danger">*</span></label>
                         </div>
                         <div class="col-12 col-md-7">
-                            <input type="file" id="file-input" name="file-input" class="form-control-file">
+                            <input name="image" type="file" id="image" name="file-input" class="form-control-file  @error('image') is-invalid  @enderror">
+                            @error('image')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <button class="text-center d-block m-auto btn btn-success">Submit</button>
