@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArtworkController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('login', [LoginController::class,'login'])->name('login')->middleware('guest');
+Route::post('login', [LoginController::class,'authenticate'])->name('login.auth');
 
+
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    Route::get('dashboard', function () {
+        return view('dashboard');
+    });
+    Route::resource('artwork',ArtworkController::class);
+});

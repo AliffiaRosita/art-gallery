@@ -59,11 +59,11 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <
+                            
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Master</a>
+                                <i class="fas fa-caret-down"></i>Master</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="index.html">User</a>
@@ -96,13 +96,13 @@
                         </li>
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Master</a>
+                                <i class="fas fa-caret-down"></i>Master</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="index.html">User</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Artwork</a>
+                                    <a href="{{route('artwork.index')}}">Artwork</a>
                                 </li>
                             </ul>
                         </li>
@@ -127,7 +127,7 @@
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">{{auth()->user()->name}}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -138,9 +138,9 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#">{{auth()->user()->name}}</a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email">{{auth()->user()->email}}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -169,7 +169,7 @@
                     <div class="container-fluid">
 
                         @yield('content')
-                        
+
                         <div class="row" >
                             <div class="col-md-12">
                                 <div class="copyright">

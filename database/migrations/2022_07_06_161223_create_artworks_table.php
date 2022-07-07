@@ -15,7 +15,7 @@ class CreateArtworksTable extends Migration
     {
         Schema::create('artworks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->text('description')->nullable();
             $table->string('image');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');

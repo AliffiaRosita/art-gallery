@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artwork;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArtworkController extends Controller
 {
@@ -14,7 +15,10 @@ class ArtworkController extends Controller
      */
     public function index()
     {
-        //
+        $artworks = Artwork::with('user')->get();
+        return view('artwork.index',[
+            "artworks"=>$artworks
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class ArtworkController extends Controller
      */
     public function create()
     {
-        //
+        return view('artwork.create');
     }
 
     /**
@@ -35,7 +39,15 @@ class ArtworkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            "title"=> "required",
+            "description"=> "required",
+            "image"=> "required|image|file|max:3000",
+        ]);
+        $image = $request->file("image");
+        $validatedData['image'] = $image->move('artwork',$image->hashName());
+        $validatedData['user_id'] = Auth::id();
+        Artwork::create($validatedData);
     }
 
     /**
