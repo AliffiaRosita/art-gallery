@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiArtworkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('artwork',[ApiArtworkController::class,'getArtwork']);
+Route::get('artwork/detail/',[ApiArtworkController::class,'artworkDetail']);
+Route::get('artwork/search/',[ApiArtworkController::class,'searchByUser']);
+
